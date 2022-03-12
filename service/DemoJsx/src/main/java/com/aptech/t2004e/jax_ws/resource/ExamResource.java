@@ -1,6 +1,6 @@
 package com.aptech.t2004e.jax_ws.resource;
 
-import com.aptech.t2004e.jax_ws.entity.ExamEntity;
+import com.aptech.t2004e.jax_ws.entity.Employee;
 import com.aptech.t2004e.jax_ws.repository.ExamRepo;
 
 import javax.ws.rs.*;
@@ -41,9 +41,9 @@ public class ExamResource {
     @POST()
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(ExamEntity product) {
+    public Response save(Employee product) {
         try {
-            ExamEntity savedProduct = examRepo.save(product);
+            Employee savedProduct = examRepo.save(product);
             return Response.status(Response.Status.CREATED).entity(savedProduct).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -54,13 +54,13 @@ public class ExamResource {
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") int id, ExamEntity product) {
+    public Response update(@PathParam("id") int id, Employee product) {
         try {
-            ExamEntity foundProduct = examRepo.findById(id);
+            Employee foundProduct = examRepo.findById(id);
             if (foundProduct == null) {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
-            ExamEntity updatedProduct = examRepo.update(id, product);
+            Employee updatedProduct = examRepo.update(id, product);
             return Response.status(Response.Status.OK).entity(updatedProduct).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -72,7 +72,7 @@ public class ExamResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
-            ExamEntity foundProduct = examRepo.findById(id);
+            Employee foundProduct = examRepo.findById(id);
             if (foundProduct == null) {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }

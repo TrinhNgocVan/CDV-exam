@@ -22,7 +22,7 @@ class ExamRepoTest {
 
     @Test
     void save() throws SQLException {
-        employeeRepo.save(new Employee("trinh ngoc van" , 100000));
+        employeeRepo.save(new Employee("trinh duc nhan" , 100000));
     }
 
     @Test

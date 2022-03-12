@@ -11,7 +11,7 @@
 
 				<div class="navbar-collapse collapse" id="navbar-footer">
 					<span class="navbar-text">
-						&copy;<span id="year"></span>.<a href="http://keysoft.vn/" target="_blank">Created By KEYSOFT</a>
+						&copy;<span id="year"></span>.<a href="http://keysoft.vn/" target="_blank">Created By Trịnh Ngọc Văn</a>
 					</span>
 					<%--
 					<ul class="navbar-nav ml-lg-auto">

@@ -41,10 +41,11 @@ public class EmployeeResource {
     @POST()
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response save(Employee product) {
+    public Response save(Employee employee) {
+        System.err.println("employee"+employee);
         try {
-            Employee savedProduct = employeeRepo.save(product);
-            return Response.status(Response.Status.CREATED).entity(savedProduct).build();
+            Employee savedEmployee = employeeRepo.save(employee);
+            return Response.status(Response.Status.CREATED).entity(savedEmployee).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -61,6 +62,7 @@ public class EmployeeResource {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
             Employee updatedProduct = employeeRepo.update(id, product);
+            System.err.println("thong tin nhan vien updated" +updatedProduct);
             return Response.status(Response.Status.OK).entity(updatedProduct).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();

@@ -8,10 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExamRepo {
+public class EmployeeRepo {
     private Connection conn;
 
-    public ExamRepo() {
+    public EmployeeRepo() {
         conn = ConnectionHelper.getConnection();
     }
 

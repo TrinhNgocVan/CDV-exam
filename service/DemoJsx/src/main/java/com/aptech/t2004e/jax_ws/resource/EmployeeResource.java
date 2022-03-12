@@ -1,27 +1,27 @@
 package com.aptech.t2004e.jax_ws.resource;
 
 import com.aptech.t2004e.jax_ws.entity.Employee;
-import com.aptech.t2004e.jax_ws.repository.ExamRepo;
+import com.aptech.t2004e.jax_ws.repository.EmployeeRepo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.SQLException;
 import java.util.ArrayList;
-@Path("/products")
-public class ExamResource {
+@Path("/employees")
+public class EmployeeResource {
 
-    private ExamRepo examRepo;
+    private EmployeeRepo employeeRepo;
 
-    public ExamResource() {
-        this.examRepo = new ExamRepo();
+    public EmployeeResource() {
+        this.employeeRepo = new EmployeeRepo();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
         try {
-            return Response.status(Response.Status.OK).entity(examRepo.findAll()).build();
+            return Response.status(Response.Status.OK).entity(employeeRepo.findAll()).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.OK).entity(new ArrayList<>()).build();
         }
@@ -32,7 +32,7 @@ public class ExamResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response findById(@PathParam("id") int id) {
         try {
-            return Response.status(Response.Status.OK).entity(examRepo.findById(id)).build();
+            return Response.status(Response.Status.OK).entity(employeeRepo.findById(id)).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
@@ -43,7 +43,7 @@ public class ExamResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(Employee product) {
         try {
-            Employee savedProduct = examRepo.save(product);
+            Employee savedProduct = employeeRepo.save(product);
             return Response.status(Response.Status.CREATED).entity(savedProduct).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -56,11 +56,11 @@ public class ExamResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@PathParam("id") int id, Employee product) {
         try {
-            Employee foundProduct = examRepo.findById(id);
+            Employee foundProduct = employeeRepo.findById(id);
             if (foundProduct == null) {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
-            Employee updatedProduct = examRepo.update(id, product);
+            Employee updatedProduct = employeeRepo.update(id, product);
             return Response.status(Response.Status.OK).entity(updatedProduct).build();
         } catch (SQLException e) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -72,11 +72,11 @@ public class ExamResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response delete(@PathParam("id") int id) {
         try {
-            Employee foundProduct = examRepo.findById(id);
+            Employee foundProduct = employeeRepo.findById(id);
             if (foundProduct == null) {
                 return Response.status(Response.Status.BAD_REQUEST).build();
             }
-            boolean isDeleted = examRepo.delete(id);
+            boolean isDeleted = employeeRepo.delete(id);
             if (isDeleted) {
                 return Response.status(Response.Status.OK).entity(isDeleted).build();
             }
